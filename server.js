@@ -5,14 +5,15 @@ var path = __dirname;
 
 var mysql = require("mysql");
 
-var con = mysql.createConnection({
+var db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "test"
+    database: "csci3100"
 });
+app.set('view engine', 'ejs');
 
-con.connect(function(err) {
+db.connect(function(err) {
     if (err) {
         console.log('mysql connecting error');
         return;
@@ -25,6 +26,25 @@ router.use(function (req,res,next) {
     next();
 });
 
+//create database
+router.get("/createdb", function(req,res){
+    let sql = 'CREATE DATABASE csci3100';
+    db.query(sql, function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send("database csci3100 created");
+    });
+});
+//create table
+router.get("/createtable", function(req,res){
+    let sql = 'CREATE TABLE account(id int AUTO_INCREMENT,username CHAR(20) NOT NULL,password CHAR(15) NOT NULL,email CHAR(40) NOT NULL,PRIMARY KEY (id))';
+    db.query(sql, function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send("table user created");
+    });
+});
+
 router.get("/", function(req,res){
     res.sendFile(path + "/index.html");
 });
@@ -33,7 +53,6 @@ router.get(/^[^.]+.html/, function(req, res){
     res.sendFile(path + req.url);
     console.log("You are visiting "+req.url);
 });
-
 
 app.use("/",router);
 

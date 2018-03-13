@@ -1,23 +1,18 @@
 {
-  "name": "csci3100",
-  "version": "1.0.0",
-  "description": "Buy2Play will be the best and most user-friendly platform for all gamers to trade their games and share their gaming experience to all other gamers in Hong Kong.",
-  "main": "server.js",
+  "name": "2018-csci3100",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kenlee1520/2018_csci3100.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kenlee1520/2018_csci3100/issues"
-  },
-  "homepage": "https://github.com/kenlee1520/2018_csci3100#readme",
   "dependencies": {
-    "express": "^4.16.2",
-    "mysql": "^2.15.0"
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "^2.5.7",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "serve-favicon": "~2.4.5"
   }
 }
