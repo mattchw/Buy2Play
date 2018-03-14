@@ -1,16 +1,22 @@
 {
-  "name": "csci3100",
-  "version": "1.0.0",
-  "description": "Buy2Play will be the best and most user-friendly platform for all gamers to trade their games and share their gaming experience to all other gamers in Hong Kong.",
-  "main": "server.js",
+  "name": "project",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "mysql": "^2.15.0"
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "^4.15.5",
+    "express-session": "^1.15.6",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.4.5"
   }
 }
