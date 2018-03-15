@@ -1,32 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-</head>
-
-<body>
-    <form name="addform" action="userAdd" method="post" accept-charset="utf-8" >
-        <h1>Account - Add</h1>
-        <div>
-            <label>username：</label>
-            <input type="text" name="username" placeholder="username" />
-        </div>
-        <div>
-            <label>password：</label>
-            <input type="password" name="password" placeholder="password">
-        </div>
-        <div>
-            <label>email：</label>
-            <input type="text" name="email" placeholder="email">
-        </div>
-        <div>
-            <input type='submit' value='Submit'>
-            <input type='reset' value='Reset'>
-            <input type='button' value='Back' onclick="javascript: location.href='/'">
-        </div>
-    </form>
-</body>
-
-</html>
+<% include include/header_login.ejs %>
+    <div class="container">
+        <h1><span class="fa fa-user-plus"></span>&nbsp;Sign up for new user</h1>
+        
+        <form name="addform" action="userAdd" method="post" accept-charset="utf-8" >
+            <div class="form-group">
+                <label>Username：</label>
+                <input type="text" name="username" class="form-control" placeholder="username" />
+            </div>
+            
+            <div class="form-group">
+                <label>Password：</label>
+                <input type="password" name="password" class="form-control" placeholder="password">
+            </div>
+            
+            <div class="form-group">
+                <label>Email：</label>
+                <input type="text" name="email" class="form-control" placeholder="email">
+            </div>
+            <div>
+                <input type='submit' class="btn btn-info btn-lg" value='Submit'>
+                <input type='reset' class="btn btn-info btn-lg" value='Reset'>
+                <input type='button' class="btn btn-info btn-lg" value='Back' onclick="javascript: location.href='/'">
+            </div>
+        </form>
+    </div>
+<% include include/footer.ejs %>
