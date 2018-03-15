@@ -6,7 +6,7 @@ var flash    = require('connect-flash');
 /* GET home page. */
 // home page
 router.get('/',function(req, res, next) {
-    res.render('index', { title: 'welcome to buy2play', isLoggedIn: req.isAuthenticated(), user: req.user});
+    res.render('index', { title: 'Welcome to buy2play', isLoggedIn: req.isAuthenticated(), user: req.user});
 });
 
 router.get('/logout', function(req, res) {
