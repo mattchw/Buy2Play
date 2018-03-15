@@ -23,7 +23,7 @@
 				<div class="pull-left">
 					<!-- Logo -->
 					<div class="header-logo">
-						<a class="logo" href="index-test.html">
+						<a class="logo" href="/">
 							<img src="/images/logo.png" alt="">
 						</a>
 					</div>
@@ -46,25 +46,9 @@
 				</div>
                 
 				<div class="pull-right">
+                    
 					<ul class="header-btns">
-						<!-- Account -->
-                        <%if (isLoggedIn) { %>
-						<li class="header-account dropdown default-dropdown">
-							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-user-o"></i>
-								</div>
-								<strong class="text-uppercase"><%= user.username %> <i class="fa fa-caret-down"></i></strong>
-							</div>
-							<ul class="custom-menu">
-								<li><a href="/profile"><i class="fa fa-user-o"></i> My Account</a></li>
-								<li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-								<li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
-							</ul>
-						</li>
-                        <% } else {%>
-                        <a href="/login" class="text-uppercase">Login</a> / <a href="/users/add" class="text-uppercase">Sign Up</a>
-                        <% } %>
+						<a href="/login" class="text-uppercase">Login</a> / <a href="/users/add" class="text-uppercase">Sign Up</a>
 
 						<!-- Mobile nav toggle-->
 						<li class="nav-toggle">
