@@ -7,5 +7,10 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'welcome to buy2play'});
 });
 
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 
 module.exports = router;
