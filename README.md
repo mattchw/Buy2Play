@@ -1,2 +1,6 @@
 # Welcome to Buy2Play
-Buy2Play will be the best and most user-friendly platform for all gamers to trade their games and share their gaming experience to all other gamers in Hong Kong.
+記得
+1) `git add .`
+2) `git commit -m "留低你修改完file既comment"`
+3) `git pull` <-- __記得！！！__
+4) `git push origin master`
