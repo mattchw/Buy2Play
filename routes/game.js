@@ -20,5 +20,10 @@ router.get('/',function(req, res, next) {
     res.render('game', { title: 'Welcome to Buy2Play', name , isLoggedIn: req.isAuthenticated()});
 });
 
+router.post('/',function(req, res, next) {
+    console.log(req.post.gamename);
+    res.render('game', { title: 'Game', name});
+});
+
 
 module.exports = router;
