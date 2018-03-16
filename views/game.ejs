@@ -10,13 +10,18 @@
         <div class="col-sm-12">
             
             
-            <form id="productForm">
+            <form id="productForm" action="game" method="post">
             
-              <label>Express shipping</label>
-              <input type="text" name="user[email]">
+              <label>Game id:</label>
+              <input type="text" name="id">
+                
+                <button type="submit" class="btn btn-warning btn-lg">submit</button>
             </form>
             
+            
+            
         </div>
+        <p><%= name%></p>
     </div>
 </div>
 <% include include/footer.ejs %>
