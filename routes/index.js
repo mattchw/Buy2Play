@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var flash    = require('connect-flash');
+var app = express();
 
 /* GET home page. */
 // home page
