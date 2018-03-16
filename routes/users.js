@@ -25,33 +25,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/add', function(req, res, next) {
-
-    // use userAdd.ejs
-    res.render('userAdd', { title: 'Add User'});
-});
-
-router.post('/userAdd', function(req, res, next) {
-
-    var db = req.con;
-
-    var sql = {
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email
-    };
-
-    //console.log(sql);
-    var qur = db.query('INSERT INTO account SET ?', sql, function(err, rows) {
-        if (err) {
-            console.log(err);
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.redirect('/');
-    });
-
-});
-
 router.get('/userEdit', function(req, res, next) {
 
     var id = req.query.id;
