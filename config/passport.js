@@ -38,12 +38,13 @@ module.exports = function(passport) {
                 } else {
                     var newUserMysql = {
                         username: username,
-                        password: password
+                        password: password,
+                        email: req.body.email
                     };
 
-                    var insertQuery = "INSERT INTO account ( username, password ,email) values (?,?,'123@123.com')";
+                    var insertQuery = "INSERT INTO account ( username, password ,email) values (?,?,?)";
 
-                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password],function(err, rows) {
+                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password,req.body.email],function(err, rows) {
                         newUserMysql.id = rows.insertId;
 
                         return done(null, newUserMysql);

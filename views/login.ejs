@@ -1,9 +1,9 @@
- <% include include/header_login.ejs %>
+ <% include include/header.ejs %>
       
     <div class="container">
-        <h1><span class="fa fa-sign-in"></span>User login</h1>
+        <h1><span class="fa fa-sign-in"></span><%= title %></h1>
         
-        <%if (message) { %>
+        <%if (message!='') { %>
             <div class="alert alert-danger"><%= message %></div>
         <% } %>
 

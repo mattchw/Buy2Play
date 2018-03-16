@@ -3,13 +3,13 @@ var router = express.Router();
 var passport = require('passport');
 var flash    = require('connect-flash');
 
-router.get('/', function(req, res) {
-    res.render('login',{title: 'login page', message: req.flash('loginMessage')});
+router.get('/',notLoggedIn, function(req, res) {
+    res.render('login',{title: 'User login',isLoggedIn: req.isAuthenticated(), message: req.flash('loginMessage')});
 });
 
 
 router.post('/', passport.authenticate('local-login', {
-    successRedirect : '/profile', 
+    successRedirect : '/', 
     failureRedirect : '/login', 
     failureFlash : true 
 }), function(req, res) {
@@ -21,5 +21,11 @@ router.post('/', passport.authenticate('local-login', {
     }
 		res.redirect('/');
 });
+
+function notLoggedIn(req, res, next) {
+	if (!req.isAuthenticated())
+		return next();
+	res.redirect('/');
+}
 
 module.exports = router;
