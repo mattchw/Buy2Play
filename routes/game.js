@@ -8,7 +8,7 @@ var app = express();
 var searchGame;
 //const qs = require('querystring');
 
-thegamesdb.getPlatformGames({ id: 25 }).then(function(games){
+thegamesdb.getPlatformGames({ id: 4971 }).then(function(games){
     console.log(games);
     gamelist = games;
 }).catch(err => console.error(error));
