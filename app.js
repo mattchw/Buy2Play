@@ -14,6 +14,7 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 var profile = require('./routes/profile');
+var game = require('./routes/game');
 
 // DataBase 
 var mysql = require("mysql");
@@ -21,7 +22,7 @@ var mysql = require("mysql");
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "1520",
+    password: "",
     database: "csci3100"
 });
 
@@ -68,6 +69,7 @@ app.use('/users', users);
 app.use('/login',login);
 app.use('/signup',signup);
 app.use('/profile',profile);
+app.use('/game',game);
 
 
 // catch 404 and forward to error handler
