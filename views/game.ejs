@@ -8,12 +8,17 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
+            <p><%= gamelist[0].id%></p>
+            <p><%= gamelist[0].title%></p>
+            <p><%= gamelist[0].releaseDate%></p>
+            <p><%= gamelist[0].platform%></p>
             
             
-            <form id="productForm">
+            <form id="gamesearch" method="get" action="/game">
             
-              <label>Express shipping</label>
-              <input type="text" name="user[email]">
+                <label>Game Name</label>
+                <input type="text" name="gamename">
+                <input type="submit" value="Submit">
             </form>
             
         </div>
