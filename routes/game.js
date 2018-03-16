@@ -8,13 +8,15 @@ var app = express();
 var searchGame;
 //const qs = require('querystring');
 
+/*
 router.get('/', function(req, res) {
     console.log(req.query.gamename);
     searchGame = req.query.gamename;
     console.log(searchGame);
     console.log("wtf");
-    res.redirect('/');
+    res.render('game', {title: 'welcome to Buy2Play',  gamelist, isLoggedIn: req.isAuthenticated()});
 });
+*/
 
 thegamesdb.getGamesList({ name: 'marvel' }).then(function(games){
         //console.log(games);
@@ -22,8 +24,15 @@ thegamesdb.getGamesList({ name: 'marvel' }).then(function(games){
     
     }).catch(err => console.error(error));
 
+
 router.get('/',function(req, res, next) {  
+    console.log(req.query.gamename);
+    searchGame = req.query.gamename;
+    console.log(searchGame);
+    console.log("---------------------------------");
     res.render('game', { title: 'Welcome to Buy2Play', gamelist, isLoggedIn: req.isAuthenticated()});
 });
+
+
 
 module.exports = router;
