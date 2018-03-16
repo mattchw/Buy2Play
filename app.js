@@ -102,10 +102,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.all(function (req, res) {
-    res.header("Access-Control-Allow-Origin", "http://thegamesdb.net");
-    res.header("Access-Control-Allow-Headers");
-    //res.send('Hello from Endpoint2!')
-});
-
 module.exports = app;
