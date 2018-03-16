@@ -7,20 +7,17 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var thegamesdb = require('thegamesdb');
 
-router.get('/',function(req, res, next) {
-    var game;
-    var str="";
-    thegamesdb.getGame({ id: 1 }).then(function(games){
-        game=games;
-        console.log(game.title);
-        str=game.title;
-        str="dsvdsvsdsdvssd";
+var name="123";
+
+thegamesdb.getGame({ id: 1 }).then(function(games){
+        console.log(games.title);
+        name=games.title;
     
     }).catch(err => console.error(error));
-    
 
+router.get('/',function(req, res, next) {
     
-    res.render('game', { title: 'Welcome to Buy2Play', test: str, isLoggedIn: req.isAuthenticated()});
+    res.render('game', { title: 'Welcome to Buy2Play', name , isLoggedIn: req.isAuthenticated()});
 });
 
 
