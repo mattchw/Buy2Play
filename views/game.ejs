@@ -8,20 +8,9 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <p><%= gamelist[0].id%></p>
-            <p><%= gamelist[0].title%></p>
-            <p><%= gamelist[0].releaseDate%></p>
-            <p><%= gamelist[0].platform%></p>
-            
-            <p><%= gamelist[1].id%></p>
-            <p><%= gamelist[1].title%></p>
-            <p><%= gamelist[1].releaseDate%></p>
-            <p><%= gamelist[1].platform%></p>
-            
-            <p><%= gamelist[2].id%></p>
-            <p><%= gamelist[2].title%></p>
-            <p><%= gamelist[2].releaseDate%></p>
-            <p><%= gamelist[2].platform%></p>
+            <% for ( var i = 0 ; i < gamelist.length ; i++){ %>
+            <p><%= gamelist[i].title%></p>
+            <% } %>
             
             <!--<form id="gamesearch" method="get" action="/game">
             
