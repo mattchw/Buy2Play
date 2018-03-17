@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
         var data = rows;
 
         // use user.ejs
-        res.render('user', { title: 'Account Information', data: data,user:user, isLoggedIn: req.isAuthenticated()});
+        res.render('user', { title: 'Account Information', data: data,user:req.user, isLoggedIn: req.isAuthenticated()});
     });
 });
 

@@ -15,6 +15,7 @@ var login = require('./routes/login');
 var signup = require('./routes/signup');
 var profile = require('./routes/profile');
 var game = require('./routes/game');
+var transaction = require('./routes/transaction');
 
 // DataBase 
 var mysql = require("mysql");
@@ -70,6 +71,7 @@ app.use('/login',login);
 app.use('/signup',signup);
 app.use('/profile',profile);
 app.use('/game',game);
+app.use('/transaction',transaction);
 
 
 // catch 404 and forward to error handler
@@ -102,6 +104,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

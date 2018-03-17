@@ -1,0 +1,26 @@
+<h1><%= title %></h1>
+<input type='submit' value='Add' onclick="javascript: location.href='http://localhost:3000/transaction/add'">
+    <table>
+        <tr>
+            <th>tid</th>
+            <th>uid</th>
+            <th>gamename</th>
+            <th>price</th>
+        </tr>
+        <% for ( var i = 0 ; i < data.length ; i++){ %>
+            <tr>
+                <td>
+                    <%= data[i].tid  %>
+                </td>
+                <td>
+                    <%= data[i].id  %>
+                </td>
+                <td>
+                    <%= data[i].gamename  %>
+                </td>
+                <td>
+                    <%= data[i].price  %>
+                </td>
+            </tr>
+            <% } %>
+    </table>

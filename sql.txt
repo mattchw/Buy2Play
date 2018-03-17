@@ -1,0 +1,2 @@
+//create transaction
+CREATE TABLE transaction(tid int AUTO_INCREMENT, id int, gamename CHAR(50), price int not null, PRIMARY KEY(tid),FOREIGN KEY(id) REFERENCES account(id))
