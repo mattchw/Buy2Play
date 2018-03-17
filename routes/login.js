@@ -4,7 +4,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 
 router.get('/',notLoggedIn, function(req, res) {
-    res.render('login',{title: 'User login',isLoggedIn: req.isAuthenticated(), message: req.flash('loginMessage')});
+    res.render('login',{title: 'User Login',isLoggedIn: req.isAuthenticated(), message: req.flash('loginMessage')});
 });
 
 
