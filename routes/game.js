@@ -4,6 +4,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var thegamesdb = require('thegamesdb');
 var app = express();
+var gamelist=[];
 
 //const qs = require('querystring');
 
