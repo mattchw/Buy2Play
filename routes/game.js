@@ -3,24 +3,19 @@ var router = express.Router();
 var passport = require('passport');
 var flash    = require('connect-flash');
 var thegamesdb = require('thegamesdb');
-var app = express();
-var gamelist=[];
-
-//const qs = require('querystring');
-
-function search(gamename) {
-    //console.log("I am testing");
-    thegamesdb.getGamesList({ name: gamename }).then(function(games){
-        //console.log(games);
-        gamelist = games;
-    }).catch(err => console.error(error));
-}
-
+var gamelist = [];
 
 router.get('/',function(req, res, next) {  
     console.log(req.query.gamename);
-    search(req.query.gamename);
-    res.render('game', { title: 'Welcome to Buy2Play', gamelist, isLoggedIn: req.isAuthenticated()});
+    
+    thegamesdb.getGamesList({ name: req.query.gamename }).then(function(games){
+        gamelist = games;
+        res.render('game', { title: 'Welcome to Buy2Play', gamelist, isLoggedIn: req.isAuthenticated()});
+    }).catch(err => console.error(error));
+    
+    //search(req.query.gamename);
+    //res.render('game', { title: 'Welcome to Buy2Play', gamelist, isLoggedIn: req.isAuthenticated()});
+    
 });
 
 module.exports = router;
