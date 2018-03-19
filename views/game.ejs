@@ -1,23 +1,30 @@
 <% include include/header.ejs %>
 
 <div class="page-header text-center">
-    <h1><span class="fa fa-check-square"></span> <%= title%></h1>
+    <h1><span class="fa fa-search"></span> <%= title%></h1>
     
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <% for ( var i = 0 ; i < gamelist.length ; i++){ %>
-            <p><a href="#"><%= gamelist[i].title%></a></p>
-            <% } %>
-            
-            <!--<form id="gamesearch" method="get" action="/game">
-            
-                <label>Game Name</label>
-                <input type="text" name="gamename">
-                <input type="submit" value="Submit">
-            </form>-->
+            <% if (gamelist.length != 0) { %>
+                <h4>Total: <%= gamelist.length%> results found.</h4>
+                <table border="1">
+                    <tr>
+                        <th>Game Platform</th>
+                        <th>Game Name</th>
+                    </tr>
+                    <% for ( var i = 0 ; i < gamelist.length ; i++){ %>
+                    <tr>
+                        <td><%= gamelist[i].platform%></td>
+                        <td><a href="#"><%= gamelist[i].title%></a></td>
+                    </tr>
+                    <% } %>
+                </table>
+            <% } else {%>
+                <h4>Sorry! No results found.</h4>
+            <% }%>
             
         </div>
     </div>
