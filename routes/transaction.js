@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/',isLoggedIn, function(req, res, next) {
 
     var db = req.con;
     var data = "";
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/add', function(req, res, next) {
+router.get('/add',isLoggedIn, function(req, res, next) {
     res.render('transactionAdd', { title: 'Add Transaction'});
 
 });
@@ -27,7 +27,7 @@ router.post('/add', function(req, res, next) {
     var db = req.con;
 
     var sql = {
-        id: req.body.id,
+        id: req.user.id,
         gamename: req.body.gamename,
         price: req.body.price
     };
@@ -42,5 +42,11 @@ router.post('/add', function(req, res, next) {
     });
 
 });
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+	res.redirect('/');
+}
+
 
 module.exports = router;
