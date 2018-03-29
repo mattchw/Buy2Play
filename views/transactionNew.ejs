@@ -1,0 +1,23 @@
+<% include include/header.ejs %>
+
+<div class="page-header text-center">
+    <h1><span class="fa fa-search"></span> <%= title%></h1>
+    
+</div>
+
+<div class="container">
+    <p>First, input the game that you want to sell.</p>
+    <div class="header-search">
+        <form method="get" action="/transaction/choose">
+            <input class="input search-input" type="text" name="gamename" placeholder="Enter your keyword">
+            <select class="input search-categories" name="platform">
+                <option value="">All Platform</option>
+                <option value="Sony Playstation 4">PS4</option>
+                <option value="Microsoft Xbox">Xbox One</option>
+                <option value="Nintendo Switch">Switch</option>
+            </select>
+            <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+<% include include/footer.ejs %>

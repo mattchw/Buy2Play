@@ -1,38 +1,73 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var flash    = require('connect-flash');
+var thegamesdb = require('thegamesdb');
+var gamelist = [];
+
 
 router.get('/',isLoggedIn, function(req, res, next) {
 
     var db = req.con;
     var data = "";
+    
+    var game = "";
+    var game = req.query.gamename;
+    
+    var filter = "";
+    if (game) {
+        filter = 'WHERE gamename = ?';
+    }
 
-    db.query('SELECT * FROM transaction', function(err, rows) {
+    db.query('SELECT * FROM transaction '+ filter,game, function(err, rows) {
         if (err) {
             console.log(err);
         }
         var data = rows;
 
-        res.render('transaction', { title: 'Transaction Information', data: data});
+        res.render('transaction', { title: 'Transaction Information', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});
     });
 
 });
 
+router.get('/new',isLoggedIn, function(req, res, next) {
+    res.render('transactionNew', { title: 'New Transaction', user:req.user, isLoggedIn: req.isAuthenticated()});
+
+});
+
+router.get('/choose',isLoggedIn, function(req, res, next) {
+    console.log(req.query.gamename);
+    console.log(req.query.platform)
+    
+    thegamesdb.getGamesList({ name: req.query.gamename ,platform: req.query.platform}).then(function(games){
+        gamelist = games;
+        console.log(gamelist);
+        res.render('transactionChoose', { title: 'Result of '+'\"'+req.query.gamename+'\"', gamelist,user:req.user, isLoggedIn: req.isAuthenticated()});
+    }).catch(err => console.error(error));
+});
+
 router.get('/add',isLoggedIn, function(req, res, next) {
-    res.render('transactionAdd', { title: 'Add Transaction'});
+    console.log(req.query.gamename);
+    res.render('transactionAdd', { title: 'Add Transaction', name: req.query.gamename, platform: req.query.platform, user:req.user, isLoggedIn: req.isAuthenticated()});
 
 });
 
 router.post('/add', function(req, res, next) {
 
     var db = req.con;
-
+    var datetime = new Date();
+    console.log(datetime);
+    
     var sql = {
         id: req.user.id,
         gamename: req.body.gamename,
-        price: req.body.price
+        platform: req.body.platform,
+        price: req.body.price,
+        description: req.body.description,
+        date: datetime,
+        likes: 0
     };
-
-    //console.log(sql);
+    
     var qur = db.query('INSERT INTO transaction SET ?', sql, function(err, rows) {
         if (err) {
             console.log(err);
@@ -42,6 +77,7 @@ router.post('/add', function(req, res, next) {
     });
 
 });
+
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();

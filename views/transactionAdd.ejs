@@ -1,3 +1,4 @@
+<% include include/header.ejs %>
 <h1><%= title %></h1>
 <form name="addform" action="add" method="post" accept-charset="utf-8" >
         <h1>Transaction - Add</h1>
@@ -9,11 +10,19 @@
 -->
         <div>
             <label>gamename：</label>
-            <input type="text" name="gamename" placeholder="gamename">
+            <input type="text" name="gamename" placeholder="gamename" value="<%= name %>" readonly>
+        </div>
+        <div>
+            <label>platfrom：</label>
+            <input type="text" name="platform" placeholder="platform" value="<%= platform %>" readonly>
         </div>
         <div>
             <label>price：</label>
             <input type="number" name="price" placeholder="price">
+        </div>
+        <div>
+            <label>description：</label>
+            <textarea rows="4" cols="50" name="description">Enter text here...</textarea>
         </div>
         <div>
             <input type='submit' value='Submit'>
@@ -21,3 +30,4 @@
             <input type='button' value='Back' onclick="javascript: location.href='/'">
         </div>
     </form>
+<% include include/footer.ejs %>
