@@ -28,7 +28,76 @@
 
         <p>New to Buy2Play? <a href="/signup">Create an account</a>.</p>
         <p>Back to <a href="/">Home</a></p>
+        
+        <div id="fb-root"></div>
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        
     </div>
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2033422926898580',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+
+    //FB.AppEvents.logPageView();
+
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+
+   }(document, 'script', 'facebook-jssdk'));
+
+    function statusChangeCallback(response) {
+        if (response.status === 'connected') {
+            setElements(true);
+            testAPI();
+            console.log('Logged In and authed');
+        } else {
+            setElements(false);
+            console.log('not authenticated');
+        }
+    };
+
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    };
+
+    function setElements(isLoggedIn) {
+        if (isLoggedIn) {
+
+        } else {
+
+        }
+    }
+
+    function logout() {
+        FB.logout(function(response) {
+            setElements(false);
+        });
+    }
+
+    function testAPI() {
+        FB.api('/me?fields=id,name,email', function(response) {
+            if (response && !response.error) {
+                console.log(response);
+            }
+        });
+    }
+</script>
 
 <% include include/footer.ejs %>
