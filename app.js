@@ -24,7 +24,8 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "1520",
-    database: "csci3100"
+    database: "csci3100",
+    multipleStatements: true
 });
 
 con.connect(function(err) {

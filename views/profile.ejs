@@ -4,24 +4,57 @@
     <h1><span class="fa fa-check-square"></span> <%= title%></h1>
     
 </div>
-
-<div class="row">
-    <div class="col-sm-12">
-        <div class="well">
-            <h3><span class="fa fa-user"></span>user information</h3>
-
-            <p>
-                <strong>id</strong>:<%= user.id  %>
-                <br>
-                <strong>username</strong>:<%= user.username  %>
-                <br>
-                <strong>email</strong>:<%= user.email  %>
-                <br>
-                <strong>password</strong>:<%= user.password  %>
-            </p>
-
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="well">
+                <h3><span class="fa fa-user"></span>user information</h3>
+                <div class="container">
+                    <img src="/images/users/default.jpg" class="img-responsive img-circle">
+                </div>
+                <p>
+                    <strong>id</strong>:<%= user.id  %>
+                    <br>
+                    <strong>username</strong>:<%= user.username  %>
+                    <br>
+                    <strong>email</strong>:<%= user.email  %>
+                </p>
+                
+                <h4>Your transaction</h4>
+                <table class="table table-hover">
+                    <tr >
+                        <th>tid</th>
+                        <th>gamename</th>
+                        <th>platform</th>
+                        <th>price</th>
+                        <th>date</th>
+                        <th></th>
+                    </tr>
+                <% for ( var i = 0 ; i < data.length ; i++){ %>
+                <tr> 
+                    <td>
+                        <%= data[i].tid  %>
+                    </td>
+                    <td>
+                        <%= data[i].gamename  %>
+                    </td>
+                    <td>
+                        <%= data[i].platform  %>
+                    </td>
+                    <td>
+                        <%= data[i].price  %>
+                    </td>
+                    <td>
+                        <%= data[i].date  %>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-xs" onclick="window.location.href='http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>'">detail</button>
+                    </td>
+                </tr>
+                <% } %>
+                </table>
+            </div>
         </div>
     </div>
-
 </div>
 <% include include/footer.ejs %>

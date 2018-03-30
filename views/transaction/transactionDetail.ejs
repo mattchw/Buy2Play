@@ -47,10 +47,10 @@
 						<div class="product-body">
 							<div class="product-label">
 								<span>New</span>
-								<span class="sale">-20%</span>
 							</div>
 							<h2 class="product-name"><%= data[0].gamename  %></h2>
-							<h3 class="product-price">$<%= data[0].price  %><del class="product-old-price">$45.00</del></h3>
+							<h3 class="product-price">$<%= data[0].price  %></h3>
+                            
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -62,32 +62,15 @@
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
 							<p><strong>tid: </strong><%= data[0].tid  %></p>
-							<p><strong>username:</strong> <%= data[0].id  %></p>
+							<p><strong>username:</strong> <%= data[0].username  %></p>
+                            <p><strong>upload date:</strong> <%= data[0].date  %></p>
 							<p><%= data[0].description  %></p>
-							<div class="product-options">
-								<ul class="size-option">
-									<li><span class="text-uppercase">Size:</span></li>
-									<li class="active"><a href="#">S</a></li>
-									<li><a href="#">XL</a></li>
-									<li><a href="#">SL</a></li>
-								</ul>
-								<ul class="color-option">
-									<li><span class="text-uppercase">Color:</span></li>
-									<li class="active"><a href="#" style="background-color:#475984;"></a></li>
-									<li><a href="#" style="background-color:#8A2454;"></a></li>
-									<li><a href="#" style="background-color:#BF6989;"></a></li>
-									<li><a href="#" style="background-color:#9A54D8;"></a></li>
-								</ul>
-							</div>
+                            <br>
 
 							<div class="product-btns">
-								<div class="qty-input">
-									<span class="text-uppercase">QTY: </span>
-									<input class="input" type="number">
-								</div>
-								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								<button class="primary-btn add-to-cart"><i class="fa fa-heart"></i> Add to Wishlist</button>
 								<div class="pull-right">
-									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+									<button class="main-btn icon-btn"><i class="fa fa-thumbs-up"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
 								</div>

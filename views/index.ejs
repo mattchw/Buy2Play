@@ -12,15 +12,12 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">PS4<i class="fa fa-angle-right"></i></a>
 							<div class="custom-menu">
 								<div class="row">
-                                    
-                                    
-                                    
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
 												<h3 class="list-links-title">Newest</h3></li>
-                                            <% for ( var i = 0 ; i < 5 ; i++){ %>
-                                                <li><a href="#"><%= ps4gamelist[i].title%></a></li>
+                                            <% for ( var i = 0 ; i < ps4New.length ; i++){ %>
+                                                <li><a href="http://localhost:3000/transaction/detail?tid=<%= ps4New[i].tid %>"><%= ps4New[i].gamename%></a></li>
                                             <% } %>
 										</ul>
 										<hr class="hidden-md hidden-lg">
@@ -29,9 +26,11 @@
 										<ul class="list-links">
 											<li>
 												<h3 class="list-links-title">Top search</h3></li>
+<!--
 											<% for ( var i = 10 ; i < 15 ; i++){ %>
                                                 <li><a href="#"><%= ps4gamelist[i].title%></a></li>
                                             <% } %>
+-->
 										</ul>
 										<hr class="hidden-md hidden-lg">
 									</div>
@@ -39,9 +38,9 @@
 										<ul class="list-links">
 											<li>
 												<h3 class="list-links-title">Top rated</h3></li>
-											<% for ( var i = 70 ; i < 75 ; i++){ %>
-                                                <li><a href="#"><%= ps4gamelist[i].title%></a></li>
-                                            <% } %>
+                                                <% for ( var i = 0 ; i < ps4Likes.length ; i++){ %>
+                                                    <li><a href="http://localhost:3000/transaction/detail?tid=<%= ps4Likes[i].tid %>"><%= ps4Likes[i].gamename%></a></li>
+                                                <% } %>
 										</ul>
 									</div>
                                     
@@ -62,54 +61,40 @@
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<li><a href="#">Women’s Clothing</a></li>
-											<li><a href="#">Men’s Clothing</a></li>
-											<li><a href="#">Phones & Accessories</a></li>
-											<li><a href="#">Jewelry & Watches</a></li>
-											<li><a href="#">Bags & Shoes</a></li>
-										</ul>
-										<hr>
-										<ul class="list-links">
-											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<li><a href="#">Women’s Clothing</a></li>
-											<li><a href="#">Men’s Clothing</a></li>
-											<li><a href="#">Phones & Accessories</a></li>
-											<li><a href="#">Jewelry & Watches</a></li>
-											<li><a href="#">Bags & Shoes</a></li>
+												<h3 class="list-links-title">Newest</h3></li>
+                                            <% for ( var i = 0 ; i < xboxNew.length ; i++){ %>
+                                                <li><a href="http://localhost:3000/transaction/detail?tid=<%= xboxNew[i].tid %>"><%= xboxNew[i].gamename%></a></li>
+                                            <% } %>
 										</ul>
 										<hr class="hidden-md hidden-lg">
 									</div>
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<li><a href="#">Women’s Clothing</a></li>
-											<li><a href="#">Men’s Clothing</a></li>
-											<li><a href="#">Phones & Accessories</a></li>
-											<li><a href="#">Jewelry & Watches</a></li>
-											<li><a href="#">Bags & Shoes</a></li>
+												<h3 class="list-links-title">Top search</h3></li>
+<!--
+											<% for ( var i = 10 ; i < 15 ; i++){ %>
+                                                <li><a href="#"><%= ps4gamelist[i].title%></a></li>
+                                            <% } %>
+-->
 										</ul>
-										<hr>
+										<hr class="hidden-md hidden-lg">
+									</div>
+									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<li><a href="#">Women’s Clothing</a></li>
-											<li><a href="#">Men’s Clothing</a></li>
-											<li><a href="#">Phones & Accessories</a></li>
-											<li><a href="#">Jewelry & Watches</a></li>
-											<li><a href="#">Bags & Shoes</a></li>
+												<h3 class="list-links-title">Top rated</h3></li>
+                                                <% for ( var i = 0 ; i < xboxLikes.length ; i++){ %>
+                                                    <li><a href="http://localhost:3000/transaction/detail?tid=<%= xboxLikes[i].tid %>"><%= xboxLikes[i].gamename%></a></li>
+                                                <% } %>
 										</ul>
-									</div>
-									<div class="col-md-4 hidden-sm hidden-xs">
-										<a class="banner banner-2" href="#">
+									</div> 
+								</div>
+                                <div class="row hidden-sm hidden-xs">
+									<div class="col-md-12">
+										<hr>
+										<a class="banner banner-1" href="#">
 											<img src="/images/xbox-banner.jpg" alt="">
-<!--
-											<div class="banner-caption">
-												<h3 class="white-color">NEW<br>COLLECTION</h3>
-											</div>
--->
 										</a>
 									</div>
 								</div>
@@ -122,60 +107,48 @@
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">Categories</h3></li>
+												<h3 class="list-links-title">Newest</h3></li>
+                                                <% for ( var i = 0 ; i < switchNew.length ; i++){ %>
+                                                    <li><a href="http://localhost:3000/transaction/detail?tid=<%= switchNew[i].tid %>"><%= switchNew[i].gamename%></a></li>
+                                                <% } %>
+										</ul>
+										<hr class="hidden-md hidden-lg">
+									</div>
+									<div class="col-md-4">
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Top search</h3></li>
+<!--
 											<% for ( var i = 10 ; i < 15 ; i++){ %>
-                                                <li><a href="#"><%= switchgamelist[i].title%></a></li>
+                                                <li><a href="#"><%= ps4gamelist[i].title%></a></li>
                                             <% } %>
-										</ul>
-										<hr>
-										<ul class="list-links">
-											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<% for ( var i = 30 ; i < 35 ; i++){ %>
-                                                <li><a href="#"><%= switchgamelist[i].title%></a></li>
-                                            <% } %>
+-->
 										</ul>
 										<hr class="hidden-md hidden-lg">
 									</div>
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<% for ( var i = 60 ; i < 65 ; i++){ %>
-                                                <li><a href="#"><%= switchgamelist[i].title%></a></li>
+												<h3 class="list-links-title">Top rated</h3>
+                                            </li>
+                                            <% for ( var i = 0 ; i < switchLikes.length ; i++){ %>
+                                                <li><a href="http://localhost:3000/transaction/detail?tid=<%= switchLikes[i].tid %>"><%= switchLikes[i].gamename%></a></li>
                                             <% } %>
 										</ul>
-										<hr>
-										<ul class="list-links">
-											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<% for ( var i = 100 ; i < 105 ; i++){ %>
-                                                <li><a href="#"><%= switchgamelist[i].title%></a></li>
-                                            <% } %>
-										</ul>
-										<hr class="hidden-md hidden-lg">
 									</div>
-									<div class="col-md-4">
-										<ul class="list-links">
-											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<% for ( var i = 110 ; i < 115 ; i++){ %>
-                                                <li><a href="#"><%= switchgamelist[i].title%></a></li>
-                                            <% } %>
-										</ul>
+                                    
+								</div>
+                                <div class="row hidden-sm hidden-xs">
+									<div class="col-md-12">
 										<hr>
-										<ul class="list-links">
-											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<% for ( var i = 0 ; i < 5 ; i++){ %>
-                                                <li><a href="#"><%= switchgamelist[i].title%></a></li>
-                                            <% } %>
-										</ul>
+										<a class="banner banner-1" href="#">
+											<img src="/images/switch-banner.png" alt="">
+										</a>
 									</div>
 								</div>
 							</div>
 						</li>
-						<li><a href="#">View All</a></li>
+						<li><a href="http://localhost:3000/transaction">View All</a></li>
 					</ul>
 				</div>
 				<!-- /category nav -->
@@ -354,11 +327,7 @@
 					<div class="banner banner-1">
 						<img src="/images/banner-mh.jpg" alt="">
 						<div class="banner-caption text-center">
-<!--
-							<h1>Bags sale</h1>
-							<h3 class="white-color font-weak">Up to 50% Discount</h3>
--->
-							<button class="primary-btn">Shop Now</button>
+							<button class="primary-btn" onclick="window.location.href='http://localhost:3000/transaction/?gamename=Monster%20Hunter:%20World'">Shop Now</button>
 						</div>
 					</div>
 					<!-- /banner -->
@@ -367,8 +336,7 @@
 					<div class="banner banner-1">
 						<img src="/images/banner-dragonball.jpg" alt="">
 						<div class="banner-caption">
-<!--							<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>-->
-							<button class="primary-btn">Shop Now</button>
+							<button class="primary-btn" onclick="window.location.href='http://localhost:3000/transaction/?gamename=Dragon%20Ball%20FighterZ'">Shop Now</button>
 						</div>
 					</div>
 					<!-- /banner -->
@@ -377,8 +345,7 @@
 					<div class="banner banner-1">
 						<img src="/images/banner-colossus.jpg" alt="">
 						<div class="banner-caption">
-<!--							<h1 class="white-color">New Product <span>Collection</span></h1>-->
-							<button class="primary-btn">Shop Now</button>
+							<button class="primary-btn" onclick="window.location.href='http://localhost:3000/transaction/?gamename=Shadow%20of%20the%20Colossus'">Shop Now</button>
 						</div>
 					</div>
 					<!-- /banner -->
@@ -445,27 +412,12 @@
 				<!-- section-title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h2 class="title">Deals Of The Day</h2>
+						<h2 class="title">recently</h2>
 						<div class="pull-right">
 							<div class="product-slick-dots-1 custom-dots"></div>
 						</div>
 					</div>
 				</div>
-				<!-- /section-title -->
-
-				<!-- banner -->
-<!--
-				<div class="col-md-3 col-sm-6 col-xs-6">
-					<div class="banner banner-2">
-						<img src="./img/banner14.jpg" alt="">
-						<div class="banner-caption">
-							<h2 class="white-color">NEW<br>COLLECTION</h2>
-							<button class="primary-btn">Shop Now</button>
-						</div>
-					</div>
-				</div>
--->
-				<!-- /banner -->
 
 				<!-- Product Slick -->
 				<div class="col-md-12 col-sm-6 col-xs-6">

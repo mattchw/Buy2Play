@@ -90,10 +90,10 @@ router.get('/detail',isLoggedIn, function(req, res, next) {
     
     var filter = "";
     if (tid) {
-        filter = 'WHERE tid = ?';
+        filter = 'WHERE T.id=A.id AND T.tid = ?';
     }
     
-    db.query('SELECT * FROM transaction '+ filter,tid, function(err, rows) {
+    db.query('SELECT * FROM transaction T, account A '+ filter,tid, function(err, rows) {
         if (err) {
             console.log(err);
         }

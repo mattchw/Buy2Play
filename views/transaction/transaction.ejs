@@ -23,12 +23,9 @@
             <th></th>
         </tr>
         <% for ( var i = 0 ; i < data.length ; i++){ %>
-        <a href="http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>">
                 <tr> 
                     <td>
-                        <a href="http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>">
-                            <%= data[i].tid  %>
-                        </a>
+                        <%= data[i].tid  %>
                     </td>
                     
                     <td>
@@ -50,7 +47,6 @@
                         <button class="btn btn-warning btn-xs" onclick="window.location.href='http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>'">detail</button>
                     </td>
                 </tr>
-        </a>
             <% } %>
             </table>
         </div>
