@@ -1,3 +1,14 @@
+//create database
+CREATE DATABASE csci3100;
+
+//create account
+CREATE TABLE account(
+id int AUTO_INCREMENT, 
+username VARCHAR(20) NOT NULL,
+password VARCHAR(15) NOT NULL,
+email VARCHAR(40) NOT NULL,
+PRIMARY KEY(id));
+
 //create transaction
 CREATE TABLE transaction(
 tid int AUTO_INCREMENT, 
@@ -10,4 +21,4 @@ location VARCHAR(50),
 date VARCHAR(25),
 likes int,
 PRIMARY KEY(tid),
-FOREIGN KEY(id) REFERENCES account(id))
+FOREIGN KEY(id) REFERENCES account(id));

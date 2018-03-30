@@ -14,24 +14,27 @@ router.get('/',isLoggedIn, function(req, res, next) {
     var game = "";
     var game = req.query.gamename;
     
+    var platform = "";
+    var platform = req.query.platform;
+    
     var filter = "";
-    if (game) {
-        filter = 'WHERE gamename = ?';
+    if (game||platform) {
+        filter = 'WHERE gamename = ? OR platform = ?';
     }
 
-    db.query('SELECT * FROM transaction '+ filter,game, function(err, rows) {
+    db.query('SELECT * FROM transaction '+ filter,[game,platform], function(err, rows) {
         if (err) {
             console.log(err);
         }
         var data = rows;
 
-        res.render('transaction', { title: 'Transaction Information', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});
+        res.render('transaction/transaction', { title: 'Transaction Information', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});
     });
 
 });
 
 router.get('/new',isLoggedIn, function(req, res, next) {
-    res.render('transactionNew', { title: 'New Transaction', user:req.user, isLoggedIn: req.isAuthenticated()});
+    res.render('transaction/transactionNew', { title: 'New Transaction', user:req.user, isLoggedIn: req.isAuthenticated()});
 
 });
 
@@ -42,13 +45,13 @@ router.get('/choose',isLoggedIn, function(req, res, next) {
     thegamesdb.getGamesList({ name: req.query.gamename ,platform: req.query.platform}).then(function(games){
         gamelist = games;
         console.log(gamelist);
-        res.render('transactionChoose', { title: 'Result of '+'\"'+req.query.gamename+'\"', gamelist,user:req.user, isLoggedIn: req.isAuthenticated()});
+        res.render('transaction/transactionChoose', { title: 'Result of '+'\"'+req.query.gamename+'\"', gamelist,user:req.user, isLoggedIn: req.isAuthenticated()});
     }).catch(err => console.error(error));
 });
 
 router.get('/add',isLoggedIn, function(req, res, next) {
     console.log(req.query.gamename);
-    res.render('transactionAdd', { title: 'Add Transaction', name: req.query.gamename, platform: req.query.platform, user:req.user, isLoggedIn: req.isAuthenticated()});
+    res.render('transaction/transactionAdd', { title: 'Add Transaction', name: req.query.gamename, platform: req.query.platform, user:req.user, isLoggedIn: req.isAuthenticated()});
 
 });
 
@@ -78,11 +81,33 @@ router.post('/add', function(req, res, next) {
 
 });
 
+router.get('/detail',isLoggedIn, function(req, res, next) {
+    var db = req.con;
+    var data = "";
+    
+    var tid = "";
+    var tid = req.query.tid;
+    
+    var filter = "";
+    if (tid) {
+        filter = 'WHERE tid = ?';
+    }
+    
+    db.query('SELECT * FROM transaction '+ filter,tid, function(err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        var data = rows;
+
+        res.render('transaction/transactionDetail', { title: 'Transaction Detail', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});
+    });
+
+});
+
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
-	res.redirect('/');
+	res.redirect('/login');
 }
-
 
 module.exports = router;

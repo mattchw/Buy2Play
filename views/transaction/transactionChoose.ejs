@@ -1,4 +1,4 @@
-<% include include/header.ejs %>
+<% include ../include/header.ejs %>
 
 <div class="page-header text-center">
     <h1><span class="fa fa-search"></span> <%= title%></h1>
@@ -11,7 +11,7 @@
             <% if (gamelist.length != 0) { %>
                 <p>Second, choose the game that you want to sell.</p>
                 <h4>Total: <%= gamelist.length%> results found.</h4>
-                <table border="1">
+                <table class="table table-hover">
                     <tr>
                         <th>Game Platform</th>
                         <th>Game Name</th>
@@ -32,4 +32,4 @@
         </div>
     </div>
 </div>
-<% include include/footer.ejs %>
+<% include ../include/footer.ejs %>

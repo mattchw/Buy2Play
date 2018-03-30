@@ -1,0 +1,71 @@
+<% include ../include/header.ejs %>
+
+<!--
+<div class="search">
+        <label>gamename：</label>
+        <input type="text" name="sgamename" value="" placeholder="input the gamename">
+        <input type="button" name="sSearch" value="Search" onclick="Search();">
+</div>
+-->
+<div class="container">
+    <h1><%= title %></h1>
+    <% if (data.length != 0) { %>
+    <div class="row">
+        <div class="col-sm-12">
+    <table class="table table-hover">
+        <tr >
+            <th>tid</th>
+            <th>uid</th>
+            <th>gamename</th>
+            <th>platform</th>
+            <th>price</th>
+            <th>date</th>
+            <th></th>
+        </tr>
+        <% for ( var i = 0 ; i < data.length ; i++){ %>
+        <a href="http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>">
+                <tr> 
+                    <td>
+                        <a href="http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>">
+                            <%= data[i].tid  %>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <%= data[i].id  %>
+                    </td>
+                    <td>
+                        <%= data[i].gamename  %>
+                    </td>
+                    <td>
+                        <%= data[i].platform  %>
+                    </td>
+                    <td>
+                        <%= data[i].price  %>
+                    </td>
+                    <td>
+                        <%= data[i].date  %>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-xs" onclick="window.location.href='http://localhost:3000/transaction/detail?tid=<%= data[i].tid  %>'">detail</button>
+                    </td>
+                </tr>
+        </a>
+            <% } %>
+            </table>
+        </div>
+    </div>
+    <% } else {%>
+        <h4>Sorry! No results found.</h4>
+    <% }%>
+</div>
+
+<% include ../include/footer.ejs %>
+
+<script>
+    function Search() {
+
+        var gamename = document.getElementsByName('sgamename')[0].value;
+        window.location.href = "/transaction?gamename=" + gamename;;
+    }
+</script>
