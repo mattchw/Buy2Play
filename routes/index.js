@@ -21,19 +21,23 @@ router.get('/',function(req, res, next) {
     var db = req.con;
     var ps4game = "";
     
-    db.query('SELECT * FROM transaction WHERE platform = ? ORDER BY date DESC; SELECT * FROM transaction WHERE platform = ? ORDER BY likes DESC;SELECT * FROM transaction WHERE platform = ? ORDER BY date DESC; SELECT * FROM transaction WHERE platform = ? ORDER BY likes DESC; SELECT * FROM transaction WHERE platform = ? ORDER BY date DESC; SELECT * FROM transaction WHERE platform = ? ORDER BY likes DESC',["Sony Playstation 4","Sony Playstation 4","Microsoft Xbox","Microsoft Xbox","Nintendo Switch","Nintendo Switch"], function(err, results) {
+    db.query("SELECT * FROM transaction WHERE platform = 'Sony Playstation 4' ORDER BY date DESC; SELECT * FROM transaction WHERE platform = 'Sony Playstation 4' ORDER BY search DESC; SELECT * FROM transaction WHERE platform = 'Sony Playstation 4' ORDER BY likes DESC; SELECT * FROM transaction WHERE platform = 'Microsoft Xbox' ORDER BY date DESC; SELECT * FROM transaction WHERE platform = 'Microsoft Xbox' ORDER BY search DESC; SELECT * FROM transaction WHERE platform = 'Microsoft Xbox' ORDER BY likes DESC; SELECT * FROM transaction WHERE platform = 'Nintendo Switch' ORDER BY date DESC; SELECT * FROM transaction WHERE platform = 'Nintendo Switch' ORDER BY search DESC; SELECT * FROM transaction WHERE platform = 'Nintendo Switch' ORDER BY likes DESC; SELECT * FROM transaction ORDER BY date DESC", function(err, results) {
         if (err) {
             console.log(err);
         }
         
         var ps4New = results[0];
-        var ps4Likes = results[1];
-        var xboxNew = results[2];
-        var xboxLikes = results[3];
-        var switchNew = results[4];
-        var switchLikes = results[5];
+        var ps4Search = results[1];
+        var ps4Likes = results[2];
+        var xboxNew = results[3];
+        var xboxSearch = results[4];
+        var xboxLikes = results[5];
+        var switchNew = results[6];
+        var switchSearch = results[7]
+        var switchLikes = results[8];
+        var recently = results[9];
         
-        res.render('index', { title: 'Welcome to Buy2Play', ps4New: ps4New, ps4Likes: ps4Likes, xboxNew: xboxNew, xboxLikes: xboxLikes, switchNew: switchNew, switchLikes: switchLikes, user:req.user, isLoggedIn: req.isAuthenticated()});
+        res.render('index', { title: 'Welcome to Buy2Play', ps4New: ps4New, ps4Search: ps4Search, ps4Likes: ps4Likes, xboxNew: xboxNew, xboxSearch: xboxSearch, xboxLikes: xboxLikes, switchNew: switchNew, switchSearch: switchSearch, switchLikes: switchLikes, recently: recently, user:req.user, isLoggedIn: req.isAuthenticated()});
         
     });
 });

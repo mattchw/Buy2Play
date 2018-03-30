@@ -16,30 +16,7 @@
 					<div class="col-md-6">
 						<div id="product-main-view">
 							<div class="product-view">
-								<img src="./img/main-product01.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/main-product02.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/main-product03.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/main-product04.jpg" alt="">
-							</div>
-						</div>
-						<div id="product-view">
-							<div class="product-view">
-								<img src="./img/thumb-product01.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/thumb-product02.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/thumb-product03.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/thumb-product04.jpg" alt="">
+								<img src="/images/transactions/default.png" alt="">
 							</div>
 						</div>
 					</div>
@@ -50,27 +27,18 @@
 							</div>
 							<h2 class="product-name"><%= data[0].gamename  %></h2>
 							<h3 class="product-price">$<%= data[0].price  %></h3>
-                            
-							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
-								</div>
-								<a href="#">3 Review(s) / Add Review</a>
-							</div>
 							<p><strong>tid: </strong><%= data[0].tid  %></p>
 							<p><strong>username:</strong> <%= data[0].username  %></p>
                             <p><strong>upload date:</strong> <%= data[0].date  %></p>
 							<p><%= data[0].description  %></p>
                             <br>
-
+                            <p><strong><i class="fa fa-thumbs-up"></i></strong> <%= data[0].likes  %></p>
+                            <p><strong>search: </strong> <%= data[0].search  %></p>
+                            <br>
 							<div class="product-btns">
 								<button class="primary-btn add-to-cart"><i class="fa fa-heart"></i> Add to Wishlist</button>
 								<div class="pull-right">
-									<button class="main-btn icon-btn"><i class="fa fa-thumbs-up"></i></button>
+									<button class="main-btn icon-btn" onclick="window.location.href='http://localhost:3000/transaction/likes?tid=<%= data[0].tid  %>'"><i class="fa fa-thumbs-up"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
 								</div>

@@ -17,12 +17,30 @@ router.get('/',isLoggedIn, function(req, res, next) {
     var platform = "";
     var platform = req.query.platform;
     
+    var date = req.query.date;
+    var likes = req.query.likes;
+    var search = req.query.search;
+    
     var filter = "";
     if (game||platform) {
         filter = 'WHERE gamename = ? OR platform = ?';
     }
+    var sortDate = "";
+    if (date){
+        sortDate = 'ORDER BY date DESC';
+    }
+    
+    var sortLikes = "";
+    if(likes){
+        sortLikes = 'ORDER BY likes DESC';
+    }
+    
+    var sortSearch = "";
+    if(search){
+        sortSearch = 'ORDER BY search DESC';
+    }
 
-    db.query('SELECT * FROM transaction '+ filter,[game,platform], function(err, rows) {
+    db.query('SELECT * FROM transaction '+ filter+sortDate+sortLikes+sortSearch,[game,platform], function(err, rows) {
         if (err) {
             console.log(err);
         }
@@ -68,6 +86,7 @@ router.post('/add', function(req, res, next) {
         price: req.body.price,
         description: req.body.description,
         date: datetime,
+        search: 0,
         likes: 0
     };
     
@@ -88,18 +107,27 @@ router.get('/detail',isLoggedIn, function(req, res, next) {
     var tid = "";
     var tid = req.query.tid;
     
-    var filter = "";
-    if (tid) {
-        filter = 'WHERE T.id=A.id AND T.tid = ?';
-    }
-    
-    db.query('SELECT * FROM transaction T, account A '+ filter,tid, function(err, rows) {
+    db.query('SELECT * FROM transaction T, account A WHERE T.id=A.id AND T.tid = ?; UPDATE transaction SET search = search+1 WHERE tid = ?',[tid,tid], function(err, rows) {
         if (err) {
             console.log(err);
         }
-        var data = rows;
+        var data = rows[0];
 
         res.render('transaction/transactionDetail', { title: 'Transaction Detail', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});
+    });
+
+});
+
+router.get('/likes',isLoggedIn, function(req, res, next) {
+    var db = req.con;
+    var tid = req.query.tid;
+    
+    var qur = db.query('UPDATE transaction SET likes = likes+1 WHERE tid = ?', tid, function(err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        var backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
     });
 
 });

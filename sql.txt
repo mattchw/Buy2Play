@@ -19,6 +19,7 @@ price int not null,
 description VARCHAR(500),
 location VARCHAR(50),
 date VARCHAR(25),
+search int,
 likes int,
 PRIMARY KEY(tid),
 FOREIGN KEY(id) REFERENCES account(id));
