@@ -7,6 +7,7 @@ id int AUTO_INCREMENT,
 username VARCHAR(20) NOT NULL,
 password VARCHAR(15) NOT NULL,
 email VARCHAR(40) NOT NULL,
+image VARCHAR(256),
 PRIMARY KEY(id));
 
 //create transaction

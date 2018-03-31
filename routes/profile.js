@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var flash    = require('connect-flash');
+var multer  = require('multer')
+var upload = multer({ dest: 'public/images/users/' })
 
 router.get('/', isLoggedIn, function(req, res) {
     var db = req.con;
@@ -20,57 +22,19 @@ router.get('/', isLoggedIn, function(req, res) {
     });
 });
 
-router.get('/transactionEdit',isLoggedIn, function(req, res, next) {
-
-    var id = req.query.id;
+router.post('/fileupload',upload.any(),function(req, res) {
     var db = req.con;
-    var data = "";
+    var oldpath = req.files[0].path;
+    var newpath = oldpath.substring(6);
 
-    db.query('SELECT * FROM account WHERE id = ?', id, function(err, rows) {
-        if (err) {
-            console.log(err);
-        }
-
-        var data = rows;
-        res.render('transactionEdit', { title: 'Edit Account', data: data });
-    });
-
-});
-
-router.post('/transactionEdit',isLoggedIn, function(req, res, next) {
-
-    var db = req.con;
-    var id = req.body.id;
-
-    var sql = {
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email
-    };
-
-    var qur = db.query('UPDATE account SET ? WHERE id = ?', [sql, id], function(err, rows) {
-        if (err) {
-            console.log(err);
-        }
-
-        res.setHeader('Content-Type', 'application/json');
-        res.redirect('/');
-    });
-
-});
-
-router.get('/transactionDelete',isLoggedIn, function(req, res, next) {
-
-    var id = req.query.id;
-    var db = req.con;
-
-    var qur = db.query('DELETE FROM account WHERE id = ?', id, function(err, rows) {
+    db.query('UPDATE account SET image = ? WHERE id = ?',[newpath,req.user.id], function(err, rows) {
         if (err) {
             console.log(err);
         }
         res.redirect('/profile');
     });
 });
+
 
 
 function isLoggedIn(req, res, next) {

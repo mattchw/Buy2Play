@@ -8,10 +8,18 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="well">
+                <center>
                 <h3><span class="fa fa-user"></span>user information</h3>
-                <div class="container">
-                    <img src="/images/users/default.jpg" class="img-responsive img-circle">
-                </div>
+                    
+                <%if (user.image==null){%>
+                <img src="/images/users/default.jpg" class="img-responsive img-circle" style="width:25%">
+                <% } else {%>
+                    <img src="<%= user.image %>" class="img-responsive img-circle" style="width:25%">
+                <%}%>
+                    <br>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#upload">upload photo</button>
+                    <br>
+                    <br>
                 <p>
                     <strong>id</strong>:<%= user.id  %>
                     <br>
@@ -19,7 +27,7 @@
                     <br>
                     <strong>email</strong>:<%= user.email  %>
                 </p>
-                
+                <br>
                 <h4>Your transaction</h4>
                 <table class="table table-hover">
                     <tr >
@@ -42,7 +50,7 @@
                         <%= data[i].platform  %>
                     </td>
                     <td>
-                        <%= data[i].price  %>
+                        $<%= data[i].price  %>
                     </td>
                     <td>
                         <%= data[i].date  %>
@@ -53,8 +61,34 @@
                 </tr>
                 <% } %>
                 </table>
+                </center>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="upload" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/profile/fileupload" method="post" enctype="multipart/form-data">
+            <input type="file" name="filetoupload"><br>
+            <input type="submit">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <% include include/footer.ejs %>
