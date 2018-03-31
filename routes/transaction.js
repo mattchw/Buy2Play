@@ -3,6 +3,10 @@ var router = express.Router();
 var passport = require('passport');
 var flash    = require('connect-flash');
 var thegamesdb = require('thegamesdb');
+
+var multer  = require('multer');
+var upload = multer({ dest: 'public/images/transactions/' });
+
 var gamelist = [];
 
 
@@ -73,16 +77,19 @@ router.get('/add',isLoggedIn, function(req, res, next) {
 
 });
 
-router.post('/add', function(req, res, next) {
-
+router.post('/add', upload.array('transactionImages', 5), function(req, res, next) {
     var db = req.con;
     var datetime = new Date();
     console.log(datetime);
+    console.log(req.files);
+    
+    var str="";
     
     var sql = {
         id: req.user.id,
         gamename: req.body.gamename,
         platform: req.body.platform,
+        preview: req.files[0].path.substring(6),
         price: req.body.price,
         description: req.body.description,
         date: datetime,
@@ -90,12 +97,33 @@ router.post('/add', function(req, res, next) {
         likes: 0
     };
     
-    var qur = db.query('INSERT INTO transaction SET ?', sql, function(err, rows) {
+    var qur = db.query("INSERT INTO transaction SET ?", sql, function(err, rows) {
         if (err) {
             console.log(err);
         }
-        res.setHeader('Content-Type', 'application/json');
-        res.redirect('/');
+        console.log(rows.insertId);
+        
+        for(i=0;i<req.files.length;i++){
+            var oldpath = req.files[i].path;
+            var newpath = oldpath.substring(6);
+            str+="INSERT INTO transactionImage(tid,path) VALUES ("+rows.insertId+","+"'"+newpath+"')";
+            if(i!=(req.files.length-1)){
+                str+=";";
+            }
+        }
+        
+        console.log(str);
+        
+        db.query(str, function(err, rows) {
+            if (err) {
+                console.log(err);
+            }
+
+            res.setHeader('Content-Type', 'application/json');
+            res.redirect('/');
+        });
+        
+        
     });
 
 });
@@ -107,10 +135,11 @@ router.get('/detail',isLoggedIn, function(req, res, next) {
     var tid = "";
     var tid = req.query.tid;
     
-    db.query('SELECT * FROM transaction T, account A WHERE T.id=A.id AND T.tid = ?; UPDATE transaction SET search = search+1 WHERE tid = ?',[tid,tid], function(err, rows) {
+    db.query('SELECT * FROM transaction T, account A, transactionImage I WHERE T.id=A.id AND T.tid=I.tid AND T.tid = ?; UPDATE transaction SET search = search+1 WHERE tid = ?',[tid,tid], function(err, rows) {
         if (err) {
             console.log(err);
         }
+        console.log(rows[0]);
         var data = rows[0];
 
         res.render('transaction/transactionDetail', { title: 'Transaction Detail', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});

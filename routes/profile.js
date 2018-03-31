@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var flash    = require('connect-flash');
-var multer  = require('multer')
-var upload = multer({ dest: 'public/images/users/' })
+var multer  = require('multer');
+var upload = multer({ dest: 'public/images/users/' });
 
 router.get('/', isLoggedIn, function(req, res) {
     var db = req.con;
@@ -26,6 +26,8 @@ router.post('/fileupload',upload.any(),function(req, res) {
     var db = req.con;
     var oldpath = req.files[0].path;
     var newpath = oldpath.substring(6);
+    
+    console.log(req.files.length);
 
     db.query('UPDATE account SET image = ? WHERE id = ?',[newpath,req.user.id], function(err, rows) {
         if (err) {

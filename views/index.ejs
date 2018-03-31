@@ -427,7 +427,11 @@
                                             <span>New</span>
                                         </div>
                                         <button class="main-btn quick-view" onclick="window.location.href='/transaction/detail?tid=<%= recently[i].tid %>'"><i class="fa fa-search-plus"></i> Quick view</button>
+                                        <% if (recently[i].preview == null){%>
                                         <img src="/images/transactions/default.png" alt="">
+                                        <%}else{%>
+                                        <img src="<%=recently[i].preview%>" alt="">
+                                        <%}%>
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-price">$<%=recently[i].price %></h3>

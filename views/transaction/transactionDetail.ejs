@@ -1,7 +1,8 @@
 <% include ../include/header.ejs %>
 
 <div class="page-header text-center">
-    <h1><span class="fa fa-search"></span> <%= title%></h1>
+    <h1><span class="fa fa-search"></span> <%= title%> </h1>
+    <p><% data[0].gamename %></p>
     
 </div>
 
@@ -15,14 +16,18 @@
 				<div class="product product-details clearfix">
 					<div class="col-md-6">
 						<div id="product-main-view">
-							<div class="product-view">
-								<img src="/images/transactions/default.png" alt="">
-							</div>
+                            <% for ( var i = 0 ; i < data.length ; i++){ %>
+                                <div class="product-view">
+								    <img src="<%= data[i].path %>" alt="">
+                                </div>
+                            <% } %>
 						</div>
                         <div id="product-view">
-                            <div class="product-view">
-								<img src="/images/transactions/default.png" alt="">
-							</div>
+                            <% for ( var i = 0 ; i < data.length ; i++){ %>
+                                <div class="product-view">
+								    <img src="<%= data[i].path %>" alt="">
+                                </div>
+                            <% } %>
                         </div>
 					</div>
 					<div class="col-md-6">
