@@ -9,7 +9,11 @@
         <div class="col-sm-12">
             <div class="well">
                 <h3><span class="fa fa-user"></span>user information</h3>
+                <%if (data[0].image==null){%>
                 <img src="/images/users/default.jpg" class="img-responsive img-circle" style="width:25%">
+                <% } else {%>
+                    <img src="<%= data[0].image %>" class="img-responsive img-circle" style="width:25%">
+                <%}%>
                 <br>
                 <p>
                     <strong>id</strong>:<%= data[0].id  %>
