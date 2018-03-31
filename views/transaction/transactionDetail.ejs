@@ -46,7 +46,8 @@
                             <p><strong>views: </strong> <%= data[0].search  %></p>
                             <br>
 							<div class="product-btns">
-								<button class="primary-btn add-to-cart"><i class="fa fa-heart"></i> Add to Wishlist</button>
+                                <button class="primary-btn add-to-cart" onclick="window.location.href='/transaction/wish?tid=<%= data[0].tid  %>'"><i class="fa fa-heart"></i> Add to Wishlist</button>
+								
 								<div class="pull-right">
 									<button class="main-btn icon-btn" onclick="window.location.href='/transaction/likes?tid=<%= data[0].tid  %>'"><i class="fa fa-thumbs-up"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>

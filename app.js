@@ -14,7 +14,7 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 var profile = require('./routes/profile');
-var game = require('./routes/game');
+var wishlist = require('./routes/wishlist');
 var transaction = require('./routes/transaction');
 
 // DataBase 
@@ -71,7 +71,7 @@ app.use('/users', users);
 app.use('/login',login);
 app.use('/signup',signup);
 app.use('/profile',profile);
-app.use('/game',game);
+app.use('/wishlist',wishlist);
 app.use('/transaction',transaction);
 
 

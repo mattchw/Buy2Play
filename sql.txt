@@ -16,7 +16,7 @@ tid int AUTO_INCREMENT,
 id int, 
 gamename VARCHAR(50), 
 platform VARCHAR(50),
-preview VARCHAR(256),
+preview VARCHAR(100),
 price int not null, 
 description VARCHAR(500),
 location VARCHAR(50),
@@ -29,5 +29,12 @@ FOREIGN KEY(id) REFERENCES account(id));
 //create transactionImage
 CREATE TABLE transactionImage(
 tid int,
-path VARCHAR(256),
+path VARCHAR(100),
 FOREIGN KEY(tid) REFERENCES transaction(tid));
+
+//create wishlist
+CREATE TABLE wishlist(
+tid int,
+id int,
+FOREIGN KEY(tid) REFERENCES transaction(tid),
+FOREIGN KEY(id) REFERENCES account(id));

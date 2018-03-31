@@ -161,6 +161,21 @@ router.get('/likes',isLoggedIn, function(req, res, next) {
 
 });
 
+router.get('/wish',isLoggedIn, function(req, res, next) {
+    var db = req.con;
+    var tid = req.query.tid;
+    var id = req.user.id;
+    
+    var qur = db.query('INSERT INTO wishlist (tid,id) VALUES (?,?)', [tid,id], function(err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        var backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
+    });
+
+});
+
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
