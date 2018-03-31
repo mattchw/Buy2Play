@@ -1,46 +1,59 @@
 <% include include/header.ejs %>
-    <h1>Account - List</h1>
-      <p id="demo"></p>
-      <div class="search">
-        <label>Username：</label>
-        <input type="text" name="suserid" value="<%=user  %>" placeholder="input the username">
-        <input type="button" name="sSearch" value="Search" onclick="Search();">
-    </div>
-      <input type='submit' value='Add' onclick="javascript: location.href='http://localhost:3000/users/add'">
-    <table>
-        <tr>
-            <th>id</th>
-            <th>username</th>
-            <th>password</th>
-            <th>email</th>
-        </tr>
-        <% for ( var i = 0 ; i < data.length ; i++){ %>
-            <tr>
-                <td>
-                    <%= data[i].id  %>
-                </td>
-                <td>
-                    <%= data[i].username  %>
-                </td>
-                <td>
-                    <%= data[i].password  %>
-                </td>
-                <td>
-                    <%= data[i].email  %>
-                </td>
-                <td>
-                    <input type="button" name="edit" value="Edit" onclick="Edit('<%= data[i].id  %>');" />
-                </td>
-                <td>
-                    <input type="button" name="delete" value="Delete" onclick="Delete('<%= data[i].id  %>');" />
-                </td>
-            </tr>
-            <% } %>
-    </table>
-<% include include/footer.ejs %>
 
-<script>
-    function Edit(id) {
-        window.location.href = "/users/userEdit?id=" + id;
-    }
-</script>
+<div class="page-header text-center">
+    <h1><span class="fa fa-check-square"></span> <%= title%></h1>
+    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="well">
+                <h3><span class="fa fa-user"></span>user information</h3>
+                <div class="container">
+                    <img src="/images/users/default.jpg" class="img-responsive img-circle">
+                </div>
+                <p>
+                    <strong>id</strong>:<%= data[0].id  %>
+                    <br>
+                    <strong>username</strong>:<%= data[0].username  %>
+                    <br>
+                    <strong>email</strong>:<%= data[0].email  %>
+                </p>
+                <h4>Transaction</h4>
+                <table class="table table-hover">
+                    <tr >
+                        <th>tid</th>
+                        <th>gamename</th>
+                        <th>platform</th>
+                        <th>price</th>
+                        <th>date</th>
+                        <th></th>
+                    </tr>
+                <% for ( var i = 0 ; i < transaction.length ; i++){ %>
+                <tr> 
+                    <td>
+                        <%= transaction[i].tid  %>
+                    </td>
+                    <td>
+                        <%= transaction[i].gamename  %>
+                    </td>
+                    <td>
+                        <%= transaction[i].platform  %>
+                    </td>
+                    <td>
+                        <%= transaction[i].price  %>
+                    </td>
+                    <td>
+                        <%= transaction[i].date  %>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-xs" onclick="window.location.href='/transaction/detail?tid=<%= transaction[i].tid  %>'">detail</button>
+                    </td>
+                </tr>
+                <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<% include include/footer.ejs %>

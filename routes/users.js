@@ -1,27 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var flash    = require('connect-flash');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',isLoggedIn, function(req, res, next) {
     var db = req.con;
     var data = "";
     
-    var user = "";
-    var user = req.query.user;
+    var id = "";
+    var id = req.query.id;
     
-    var filter = "";
-    if (user) {
-        filter = ' WHERE username = ?';
-    }
 
-    db.query('SELECT * FROM account'+ filter, user, function(err, rows) {
+    db.query('SELECT * FROM account WHERE id = ?; SELECT * FROM transaction WHERE id = ?', [id,id], function(err, rows) {
         if (err) {
             console.log(err);
         }
-        var data = rows;
+        var data = rows[0];
+        var transaction = rows[1];
 
-        // use user.ejs
-        res.render('user', { title: 'Account Information', data: data,user:req.user, isLoggedIn: req.isAuthenticated()});
+        res.render('user', { title: 'Account Information', data: data,transaction:transaction, user:req.user, isLoggedIn: req.isAuthenticated()});
     });
 });
 
@@ -76,5 +73,11 @@ router.get('/userDelete', function(req, res, next) {
         res.redirect('/');
     });
 });
+
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+	res.redirect('/login');
+}
 
 module.exports = router;

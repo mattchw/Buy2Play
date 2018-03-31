@@ -19,14 +19,14 @@
                     <% for ( var i = 0 ; i < gamelist.length ; i++){ %>
                     <tr>
                         <td><%= gamelist[i].platform%></td>
-                        <td><a href="http://localhost:3000/transaction/add?gamename=<%= gamelist[i].title%>&platform=<%= gamelist[i].platform%>"><%= gamelist[i].title%></a></td>
+                        <td><a href="/transaction/add?gamename=<%= gamelist[i].title%>&platform=<%= gamelist[i].platform%>"><%= gamelist[i].title%></a></td>
                     </tr>
                     <% } %>
                 </table>
-            <button class="btn btn-warning btn-lg" onclick="window.location.href='http://localhost:3000/transaction/new'">Return</button>
+            <button class="btn btn-warning btn-lg" onclick="window.location.href='/transaction/new'">Return</button>
             <% } else {%>
                 <h4>Sorry! No results found.</h4>
-                <button class="btn btn-warning btn-lg" onclick="window.location.href='http://localhost:3000/transaction/new'">Return</button>
+                <button class="btn btn-warning btn-lg" onclick="window.location.href='/transaction/new'">Return</button>
             <% }%>
             
         </div>

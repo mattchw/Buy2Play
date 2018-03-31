@@ -28,7 +28,7 @@
 							<h2 class="product-name"><%= data[0].gamename  %></h2>
 							<h3 class="product-price">$<%= data[0].price  %></h3>
 							<p><strong>tid: </strong><%= data[0].tid  %></p>
-							<p><strong>username:</strong> <%= data[0].username  %></p>
+                            <p><strong>username:</strong><a href="/users?id=<%= data[0].id%>"> <%= data[0].username  %></a></p>
                             <p><strong>upload date:</strong> <%= data[0].date  %></p>
 							<p><%= data[0].description  %></p>
                             <br>
@@ -38,7 +38,7 @@
 							<div class="product-btns">
 								<button class="primary-btn add-to-cart"><i class="fa fa-heart"></i> Add to Wishlist</button>
 								<div class="pull-right">
-									<button class="main-btn icon-btn" onclick="window.location.href='http://localhost:3000/transaction/likes?tid=<%= data[0].tid  %>'"><i class="fa fa-thumbs-up"></i></button>
+									<button class="main-btn icon-btn" onclick="window.location.href='/transaction/likes?tid=<%= data[0].tid  %>'"><i class="fa fa-thumbs-up"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
 								</div>

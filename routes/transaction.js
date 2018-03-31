@@ -58,7 +58,7 @@ router.get('/new',isLoggedIn, function(req, res, next) {
 
 router.get('/choose',isLoggedIn, function(req, res, next) {
     console.log(req.query.gamename);
-    console.log(req.query.platform)
+    console.log(req.query.platform);
     
     thegamesdb.getGamesList({ name: req.query.gamename ,platform: req.query.platform}).then(function(games){
         gamelist = games;
