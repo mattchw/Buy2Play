@@ -39,7 +39,8 @@
                         <%= data[i].date  %>
                     </td>
                     <td>
-                        <button class="btn btn-warning btn-xs" onclick="window.location.href='/transaction/detail?tid=<%= data[i].tid  %>'">detail</button>
+                        <button class="btn btn-info btn-xs" onclick="window.location.href='/transaction/detail?tid=<%= data[i].tid  %>'">detail</button>
+                        <button class="btn btn-warning btn-xs" onclick="window.location.href='/wishlist/delete?tid=<%= data[i].tid  %>'">delete</button>
                     </td>
                 </tr>
                 <% } %>

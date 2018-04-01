@@ -135,14 +135,17 @@ router.get('/detail',isLoggedIn, function(req, res, next) {
     var tid = "";
     var tid = req.query.tid;
     
-    db.query('SELECT * FROM transaction T, account A, transactionImage I WHERE T.id=A.id AND T.tid=I.tid AND T.tid = ?; UPDATE transaction SET search = search+1 WHERE tid = ?',[tid,tid], function(err, rows) {
+    db.query('SELECT * FROM transaction T, account A, transactionImage I WHERE T.id=A.id AND T.tid=I.tid AND T.tid = ?; UPDATE transaction SET search = search+1 WHERE tid = ?; SELECT COUNT(*) AS count FROM wishlist w, transaction t WHERE w.tid=t.tid AND w.tid=? AND w.id=?; SELECT COUNT(*) AS count FROM likes l, transaction t WHERE l.tid=t.tid AND l.tid=? AND l.id=?',[tid,tid,tid,req.user.id,tid,req.user.id], function(err, rows) {
         if (err) {
             console.log(err);
         }
-        console.log(rows[0]);
+        console.log(rows[2]);
         var data = rows[0];
+        
+        var checkWishlist = rows[2];
+        var checkLikes = rows[3];
 
-        res.render('transaction/transactionDetail', { title: 'Transaction Detail', data: data, user:req.user, isLoggedIn: req.isAuthenticated()});
+        res.render('transaction/transactionDetail', { title: 'Transaction Detail', data: data, checkWishlist:checkWishlist, checkLikes:checkLikes, user:req.user, isLoggedIn: req.isAuthenticated()});
     });
 
 });
@@ -151,7 +154,21 @@ router.get('/likes',isLoggedIn, function(req, res, next) {
     var db = req.con;
     var tid = req.query.tid;
     
-    var qur = db.query('UPDATE transaction SET likes = likes+1 WHERE tid = ?', tid, function(err, rows) {
+    var qur = db.query('UPDATE transaction SET likes = likes+1 WHERE tid = ?; INSERT INTO likes (tid,id) VALUES (?,?)', [tid,tid,req.user.id], function(err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        var backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
+    });
+
+});
+
+router.get('/likes/delete',isLoggedIn, function(req, res, next) {
+    var db = req.con;
+    var tid = req.query.tid;
+
+    var qur = db.query('UPDATE transaction SET likes = likes-1 WHERE tid = ?; DELETE FROM likes WHERE id = ? AND tid = ?', [tid,req.user.id,tid], function(err, rows) {
         if (err) {
             console.log(err);
         }
@@ -175,6 +192,7 @@ router.get('/wish',isLoggedIn, function(req, res, next) {
     });
 
 });
+
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())

@@ -20,6 +20,19 @@ router.get('/', isLoggedIn, function(req, res) {
     });
 });
 
+router.get('/delete', function(req, res, next) {
+    var db = req.con;
+    var tid = req.query.tid;
+
+    var qur = db.query('DELETE FROM wishlist WHERE id = ? AND tid = ?', [req.user.id,tid], function(err, rows) {
+        if (err) {
+            console.log(err);
+        }
+        var backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
+    });
+});
+
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();

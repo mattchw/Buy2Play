@@ -38,3 +38,10 @@ tid int,
 id int,
 FOREIGN KEY(tid) REFERENCES transaction(tid),
 FOREIGN KEY(id) REFERENCES account(id));
+
+//create likes
+CREATE TABLE likes(
+tid int,
+id int,
+FOREIGN KEY(tid) REFERENCES transaction(tid),
+FOREIGN KEY(id) REFERENCES account(id));
