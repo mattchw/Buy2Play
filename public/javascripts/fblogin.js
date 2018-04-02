@@ -43,7 +43,7 @@ function checkLoginState() {
 };
 
 
-function logout() {
+function fblogout() {
     FB.logout(function(response) {
         //setElements(false);
         localStorage.setItem("facebookLogin", "false");
