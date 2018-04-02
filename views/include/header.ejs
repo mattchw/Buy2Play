@@ -60,7 +60,7 @@
 								<strong class="text-uppercase"><%= user.username %><i class="fa fa-caret-down"></i></strong>
                                 
 							</div>
-                            <a href="/logout" class="text-uppercase">Logout</a>
+                            <a href="/logout" class="text-uppercase" onclick="fblogout()">Logout</a>
 							<ul class="custom-menu">
 								<li><a href="/profile"><i class="fa fa-user-o"></i> My Account</a></li>
 								<li><a href="/wishlist"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
@@ -72,9 +72,6 @@
                         <ul class="header-btns">
                             <li>
                                 <a href="/login" class="text-uppercase">Login</a> / <a href="/signup" class="text-uppercase">Sign Up</a>
-                                
-                                <div><button onclick="fblogout()">test for Facebook logout</button></div>
-                                
                             </li>
                         </ul>
                         

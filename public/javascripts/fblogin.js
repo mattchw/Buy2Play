@@ -7,14 +7,12 @@ window.fbAsyncInit = function() {
     });
 
     //FB.AppEvents.logPageView();
-
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
     });
 
 };
 
-var indexURL = 'http://localhost:3000/';
 var signupURL = 'http://localhost:3000/signup/';
 
 (function(d, s, id){
@@ -43,11 +41,7 @@ function checkLoginState() {
 
 function fblogout() {
     FB.logout(function(response) {
-        //setElements(false);
         localStorage.setItem("facebookLogin", "false");
-        //localStorage.removeItem("facebookUserID");
-        //localStorage.removeItem("facebookUserName");
-        //localStorage.removeItem("facebookUserEmail");
     });
 }
 
@@ -56,10 +50,8 @@ function callFbApi() {
         if (response && !response.error) {
             console.log(response);
             localStorage.setItem("facebookLogin", "true");
-            //localStorage.setItem("facebookUserID", response.id);
-            //localStorage.setItem("facebookUserName", response.name);
-            //localStorage.setItem("facebookUserEmail", response.email);
             if ($(location).attr('href') != signupURL) {
+                $('.fb-login-button').hide();
                 $('#signup-name').val(response.name);
                 $('#signup-email').val(response.email);
             }
