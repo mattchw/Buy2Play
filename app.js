@@ -51,6 +51,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//## test Facebook Login
+app.use(require('morgan')('combined'));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+
 app.use(session({
 	secret: 'vidyapathaisalwaysrunning',
 	resave: true,
