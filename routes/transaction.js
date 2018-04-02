@@ -27,7 +27,8 @@ router.get('/',isLoggedIn, function(req, res, next) {
     
     var filter = "";
     if (game||platform) {
-        filter = 'WHERE gamename = ? OR platform = ?';
+        game = "%"+req.query.gamename+"%";
+        filter = "WHERE gamename LIKE ? OR platform = ?";
     }
     var sortDate = "";
     if (date){
@@ -44,7 +45,7 @@ router.get('/',isLoggedIn, function(req, res, next) {
         sortSearch = 'ORDER BY search DESC';
     }
 
-    db.query('SELECT * FROM transaction '+ filter+sortDate+sortLikes+sortSearch,[game,platform], function(err, rows) {
+    db.query("SELECT * FROM transaction "+ filter+sortDate+sortLikes+sortSearch,[game,platform], function(err, rows) {
         if (err) {
             console.log(err);
         }

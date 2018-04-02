@@ -5,8 +5,6 @@ var flash    = require('connect-flash');
 var thegamesdb = require('thegamesdb');
 var app = express();
 
-// call thegamesdb api - get PS4
-
 thegamesdb.getPlatformGames({ id: 4919 }).then(function(games){
     ps4gamelist = games;
 }).catch(err => console.error(error));
