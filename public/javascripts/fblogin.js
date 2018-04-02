@@ -15,6 +15,7 @@ window.fbAsyncInit = function() {
 };
 
 var indexURL = 'http://localhost:3000/';
+var signupURL = 'http://localhost:3000/signup/';
 
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -28,9 +29,6 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         callFbApi();
         console.log('FB Logged In and authenticated');
-        //if ($(location).attr('href') != indexURL)
-            //window.location.href = "/";
-        
     } else {
         console.log('FB Not yet authenticated');
     }
@@ -47,9 +45,9 @@ function fblogout() {
     FB.logout(function(response) {
         //setElements(false);
         localStorage.setItem("facebookLogin", "false");
-        localStorage.removeItem("facebookUserID");
-        localStorage.removeItem("facebookUserName");
-        localStorage.removeItem("facebookUserEmail");
+        //localStorage.removeItem("facebookUserID");
+        //localStorage.removeItem("facebookUserName");
+        //localStorage.removeItem("facebookUserEmail");
     });
 }
 
@@ -58,9 +56,13 @@ function callFbApi() {
         if (response && !response.error) {
             console.log(response);
             localStorage.setItem("facebookLogin", "true");
-            localStorage.setItem("facebookUserID", response.id);
-            localStorage.setItem("facebookUserName", response.name);
-            localStorage.setItem("facebookUserEmail", response.email);
+            //localStorage.setItem("facebookUserID", response.id);
+            //localStorage.setItem("facebookUserName", response.name);
+            //localStorage.setItem("facebookUserEmail", response.email);
+            if ($(location).attr('href') != signupURL) {
+                $('#signup-name').val(response.name);
+                $('#signup-email').val(response.email);
+            }
         }
     });
 }

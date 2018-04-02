@@ -10,12 +10,12 @@
         <form action="/signup" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control" name="username" required>
+                <input id="signup-name" type="text" class="form-control" name="username" required>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" required>
+                <input id="signup-password" type="password" class="form-control" name="password" required>
             </div>
             
             <div class="form-group">
@@ -25,16 +25,18 @@
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" required>
+                <input id="signup-email" type="email" class="form-control" name="email" required>
             </div>
 
 
-            <button type="submit" class="btn btn-warning btn-lg">submit</button>
+            <button type="submit" class="btn btn-warning btn-lg">Submit</button>
         </form>
 
         <hr>
 
         <p>Have an account? Click <a href="/login">here </a>to login</p>
         <p>Go back to <a href="/">home</a></p>
+        
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
     </div>
 <% include include/footer.ejs %>
