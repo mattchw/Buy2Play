@@ -28,8 +28,8 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         callFbApi();
         console.log('FB Logged In and authenticated');
-        if ($(location).attr('href') != indexURL)
-            window.location.href = "/";
+        //if ($(location).attr('href') != indexURL)
+            //window.location.href = "/";
         
     } else {
         console.log('FB Not yet authenticated');
