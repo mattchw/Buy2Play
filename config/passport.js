@@ -33,7 +33,10 @@ module.exports = function(passport) {
             connection.query("SELECT * FROM account WHERE username = ?",[username], function(err, rows) {
                 if (err)
                     return done(err);
-                if (rows.length) {
+                if (password!=req.body.repassword){
+                    return done(null, false, req.flash('signupMessage', 'passwords are not matched'));
+                }
+                else if (rows.length) {
                     return done(null, false, req.flash('signupMessage', 'username exist'));
                 } else {
                     var newUserMysql = {
