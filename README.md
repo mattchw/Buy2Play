@@ -75,4 +75,4 @@ Start the Node.js server
 npm start
 ```
 
-__Enjoy Shopping at Buy2Play__
+__Enjoy Shopping at Buy2Play!__
