@@ -16,6 +16,7 @@ window.fbAsyncInit = function() {
 var indexURL = 'http://localhost:3000/';
 var signupURL = 'http://localhost:3000/signup';
 var loginURL = 'http://localhost:3000/login';
+var profileURL = 'http://localhost:3000/profile';
 
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -27,8 +28,8 @@ var loginURL = 'http://localhost:3000/login';
 
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
-        callFbApi();
-    }
+        callFbApi(true);
+    } else { callFbApi(false); }
 };
 
 function checkLoginState() {
@@ -44,26 +45,30 @@ function fblogout() {
     });
 }
 
-function callFbApi() {
+function callFbApi(isFbLoggedIn) {
     FB.api('/me?fields=id,name,email', function(response) {
-        if (response && !response.error) {
-            console.log(response);
-            localStorage.setItem("facebookLogin", "true");
-            if ($(location).attr('href') == signupURL) {
-                $('.fb-login-button').hide();
-                $('#signup-name').val(response.name);
-                $('#signup-email').val(response.email);
+        if (isFbLoggedIn) {
+            if (response && !response.error) {
+                //console.log(response);
+                localStorage.setItem("facebookLogin", "true");
+                if ($(location).attr('href') == signupURL) {
+                    $('.fb-login-button').hide();
+                    $('#signup-name').val(response.name);
+                    $('#signup-email').val(response.email);
+                }
+                else if ($(location).attr('href') == loginURL) {
+                    $('.fb-login-button').hide();
+                    $('#login-name').val(response.name);
+                }
+                else if ($(location).attr('href') == profileURL) {
+                    $('#profile-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=large');
+                }
                 
-                //$('#facebook-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=large');
-                
-            }
-            else if ($(location).attr('href') == loginURL) {
-                $('#login-name').val(response.name);
-            }
-            else if ($(location).attr('href') == indexURL) {
                 $('#user-icon').hide();
                 $('#facebook-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=square');
             }
+        } else {
+            $('#facebook-user-icon').hide();
         }
     });
 }

@@ -12,7 +12,7 @@
                 <h3><span class="fa fa-user"></span>user information</h3>
                     
                 <%if (user.image==null){%>
-                <img src="/images/users/default.jpg" class="img-responsive img-circle" style="width:25%">
+                <img id="profile-user-icon" src="/images/users/default.jpg" class="img-responsive img-circle" style="width:25%">
                 <% } else {%>
                     <img src="<%= user.image %>" class="img-responsive img-circle" style="width:25%">
                 <%}%>
