@@ -21,7 +21,7 @@ module.exports = function(passport) {
             done(err, rows[0]);
         });
     });
-    
+
     passport.use(
         'local-signup',
         new LocalStrategy({
@@ -34,10 +34,10 @@ module.exports = function(passport) {
                 if (err)
                     return done(err);
                 if (password!=req.body.repassword){
-                    return done(null, false, req.flash('signupMessage', 'passwords are not matched'));
+                    return done(null, false, req.flash('signupMessage', 'Passwords are not matched.'));
                 }
                 else if (rows.length) {
-                    return done(null, false, req.flash('signupMessage', 'username exist'));
+                    return done(null, false, req.flash('signupMessage', 'Username already exist.'));
                 } else {
                     var newUserMysql = {
                         username: username,
@@ -70,12 +70,12 @@ module.exports = function(passport) {
                 if (err)
                     return done(err);
                 if (!rows.length) {
-                    return done(null, false, req.flash('loginMessage', 'username not exist'));
+                    return done(null, false, req.flash('loginMessage', 'Username does not exist.'));
                 }
 
                 //if (!bcrypt.compareSync(password, rows[0].password)){
                 if(password!=rows[0].password){
-                    return done(null, false, req.flash('loginMessage', 'password incorrect'));
+                    return done(null, false, req.flash('loginMessage', 'Incorrect Password.'));
                 }
 
                 return done(null, rows[0]);
