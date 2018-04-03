@@ -46,11 +46,15 @@ function fblogout() {
 function callFbApi() {
     FB.api('/me?fields=id,name,email', function(response) {
         if (response && !response.error) {
+            console.log(response);
             localStorage.setItem("facebookLogin", "true");
             if ($(location).attr('href') == signupURL) {
                 $('.fb-login-button').hide();
                 $('#signup-name').val(response.name);
                 $('#signup-email').val(response.email);
+                
+                $('#facebook-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=large');
+                
             }
             else if ($(location).attr('href') == loginURL) {
                 $('#login-name').val(response.name);
