@@ -55,8 +55,14 @@
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
-									<i id="user-icon" class="fa fa-user-o"></i>
-                                    <img id="facebook-user-icon" src='' />
+									
+                                    <% if (user.image){%>
+                                        <img src='<%=user.image%>' height="40" width="40"/>
+                                    <%} else {%>
+                                        <i id="user-icon" class="fa fa-user-o"></i>
+                                        <img id="facebook-user-icon" src='' height="40" width="40"/>
+                                    <%}%>
+                                    
 								</div>
 								<strong class="text-uppercase"><%= user.username %><i class="fa fa-caret-down"></i></strong>
                                 
