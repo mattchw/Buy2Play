@@ -13,6 +13,7 @@ window.fbAsyncInit = function() {
 
 };
 
+var indexURL = 'http://localhost:3000/';
 var signupURL = 'http://localhost:3000/signup';
 var loginURL = 'http://localhost:3000/login';
 
@@ -53,11 +54,15 @@ function callFbApi() {
                 $('#signup-name').val(response.name);
                 $('#signup-email').val(response.email);
                 
-                $('#facebook-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=large');
+                //$('#facebook-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=large');
                 
             }
             else if ($(location).attr('href') == loginURL) {
                 $('#login-name').val(response.name);
+            }
+            else if ($(location).attr('href') == indexURL) {
+                $('#user-icon').hide();
+                $('#facebook-user-icon').attr('src', 'http://graph.facebook.com/' + response.id + '/picture?type=square');
             }
         }
     });
