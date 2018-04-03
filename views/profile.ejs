@@ -21,21 +21,21 @@
                     <br>
                     <br>
                 <p>
-                    <strong>id</strong>:<%= user.id  %>
+                    <strong>Id</strong>: <%= user.id  %>
                     <br>
-                    <strong>username</strong>:<%= user.username  %>
+                    <strong>Username</strong>: <%= user.username  %>
                     <br>
-                    <strong>email</strong>:<%= user.email  %>
+                    <strong>Email</strong>: <%= user.email  %>
                 </p>
                 <br>
                 <h4>Your transaction</h4>
                 <table class="table table-hover">
                     <tr >
                         <th>tid</th>
-                        <th>gamename</th>
-                        <th>platform</th>
-                        <th>price</th>
-                        <th>date</th>
+                        <th>Gamename</th>
+                        <th>Platform</th>
+                        <th>Price</th>
+                        <th>Date</th>
                         <th></th>
                     </tr>
                 <% for ( var i = 0 ; i < data.length ; i++){ %>
@@ -56,7 +56,7 @@
                         <%= data[i].date  %>
                     </td>
                     <td>
-                        <button class="btn btn-info btn-xs" onclick="window.location.href='/transaction/detail?tid=<%= data[i].tid  %>'">detail</button>
+                        <button class="btn btn-info btn-xs" onclick="window.location.href='/transaction/detail?tid=<%= data[i].tid  %>'">Detail</button>
                     </td>
                 </tr>
                 <% } %>
