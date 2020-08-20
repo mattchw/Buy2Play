@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "async": "^2.6.0",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "cb": "^0.1.0",
