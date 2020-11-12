@@ -1,5 +1,5 @@
 # Welcome to Buy2Play
-![alt text](https://www.matthewchw.com/images/portfolio/Buy2Play.png)
+![alt text](./images/Buy2Play.png)
 
 Buy2Play is a Web application specially designed for second-hand game retailing. We hope to provide a user-friendly and robust platform for people to trade second-hand games. We have designed a few important functions for the Web application to address the problem of the current second-hand game trading platforms.
 
